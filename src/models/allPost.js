@@ -5,6 +5,7 @@ const postSchema = new mongoose.Schema({
     image: String,
     location: String,
     userId: String,
+    userName: { type: mongoose.Schema.Types.ObjectId, ref: 'users' }
 })
 
 const posts = mongoose.models.posts || mongoose.model('posts', postSchema);

@@ -56,6 +56,17 @@
 }
 
 .create-form {
-  background-color: rgb(234, 236, 121);
+  background-color: rgb(177, 209, 142);
   padding: 50px;
+}
+
+.simplebg {
+  background-color: aliceblue;
+}
+
+.sideNav {
+  /* background-color: blue; */
+  border: 1px solid black;
+  color: black;
+  /* margin-left: 20px; */
 }

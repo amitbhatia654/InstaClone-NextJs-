@@ -7,6 +7,9 @@ import Navbar from "../Components/Navbar";
 import Image from "next/image";
 import profilepic from "./profilepic.jpg";
 import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import Loading from "../Components/Loading";
 
 export default function page() {
   useEffect(() => {
@@ -14,7 +17,9 @@ export default function page() {
   }, []);
 
   const { register, handleSubmit, setValue } = useForm();
+  const element = <FontAwesomeIcon icon={faEnvelope} />;
   const [postImage, setPostImage] = useState({ myfile: "" });
+  const [loading, setLoading] = useState(true);
   const [imageData, setImageData] = useState("");
   const [details, setDetails] = useState({
     email: "",
@@ -33,10 +38,11 @@ export default function page() {
   }
 
   const getUser = async () => {
+    setLoading(true);
     const { data } = await axios.get("/api/users/userDetails");
     setDetails(data.UserDetails);
-
     setPostImage({ ...postImage, myfile: data.UserDetails.image });
+    setLoading(false);
   };
 
   const handleUpdate = async (data: any) => {
@@ -66,41 +72,46 @@ export default function page() {
     setPostImage({ ...postImage, myfile: b });
   };
   return (
-    <div>
+    <div className="simplebg">
       <Navbar></Navbar>
       <br></br>
-      welcome to the profile page<br></br>
-      <table>
-        <thead>
-          <tr>
-            <td>
-              <Image
-                src={postImage.myfile || profilepic}
-                height={250}
-                width={250}
-                alt="profile Pic"
-                priority
-                className="profile-pic"
-              ></Image>
-            </td>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td>{details?.name}</td>
-          </tr>
+      <h2>My Profile</h2>
+      {loading ? (
+        <Loading></Loading>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <td>
+                <Image
+                  src={postImage.myfile || profilepic}
+                  height={250}
+                  width={250}
+                  alt="profile Pic"
+                  priority
+                  className="profile-pic"
+                ></Image>
+              </td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>{details?.name}</td>
+            </tr>
 
-          <tr>
-            <td>Email</td>
-            <td>{details?.email}</td>
-          </tr>
+            <tr>
+              <td>Email</td>
+              <td>{details?.email}</td>
+            </tr>
 
-          <tr>
-            <td>About</td>
-            <td>{details?.aboutMe}</td>
-          </tr>
-        </thead>
-      </table>
+            <tr>
+              <td>About</td>
+              <td>{details?.aboutMe}</td>
+            </tr>
+          </thead>
+        </table>
+      )}
       <br></br>
+
       {/* <!-- Button trigger modal --> */}
       <button
         type="button"

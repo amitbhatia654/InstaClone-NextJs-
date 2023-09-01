@@ -3,51 +3,64 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import axios from "axios";
-import { useFormState } from "react-hook-form";
 import Image from "next/image";
+import profilePic from "../profile/profilepic.jpg";
+import Loading from "../Components/Loading";
 
 export default function page() {
+  const [allPosts, setAllPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     getAllPost();
   }, []);
 
-  const [allPosts, setAllPosts] = useState<any[]>([]);
-
   const getAllPost = async () => {
+    setLoading(true);
     const { data } = await axios.get("/api/users/userDetails");
-    //const id = data.UserDetails._id;
-    //console.log(id,'the res');
     const res = await axios.get("/api/users/posts");
-    //console.log(res.data,'the ressss');
     setAllPosts(res.data);
+    setLoading(false);
   };
 
   return (
-    <div>
+    <div className="simplebg">
       <Navbar></Navbar>
-
-      {allPosts.length == 0 ? (
+      {/* {console.log(allPosts)} */}
+      {loading ? (
+        <Loading></Loading>
+      ) : allPosts.length == 0 ? (
         <div className="border ">No post Available!</div>
       ) : (
         allPosts.map((data) => {
           return (
             <div
               key={data._id}
-              className=" my-4  d-flex align-items-center justify-content-center"
+              className=" my-4  d-flex align-items-center justify-content-center "
             >
-              <div>
-                Title:{data?.title}
+              <div className="p-1">
+                <Image
+                  src={data?.userName.image || profilePic}
+                  height={40}
+                  width={40}
+                  alt="pic"
+                  className="rounded-circle"
+                ></Image>{" "}
+                <span>{data.userName.name}</span>
+                <br></br>
+                <span className="fw-light">Location: {data.location}</span>
                 <br></br>
                 {data.image && (
                   <Image
                     src={data?.image}
-                    height={250}
+                    height={300}
                     width={400}
                     alt="pic"
+                    className="border border-dark"
                   ></Image>
                 )}
                 <br></br>
-                Location : {data.location}
+                Caption: {data?.title}
+                <hr />
               </div>
             </div>
           );

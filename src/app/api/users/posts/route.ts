@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
       image: reqBody.image,
       location: reqBody.location,
       userId: reqBody.userId,
+      userName: reqBody.userId,
     }).save();
     return NextResponse.json({ message: "Post Saved SuccessFully" });
   } catch (error) {
@@ -27,9 +28,12 @@ export async function GET(request: NextRequest) {
   try {
     const data = request.nextUrl.searchParams.get("id");
     if (data) {
-      var result = await posts.find({ userId: data });
+      var result = await posts
+        .find({ userId: data })
+        .populate("userName")
+        .sort({ _id: -1 });
     } else {
-      var result = await posts.find();
+      var result = await posts.find().populate("userName").sort({ _id: -1 });
     }
 
     return NextResponse.json(result);
@@ -44,11 +48,11 @@ export async function PUT(request: NextRequest) {
     const reqBody = await request.json();
     const res = await posts.findByIdAndUpdate(
       { _id: reqBody.id },
-      { title: reqBody.title, image: reqBody.image }
+      { $set: { title: reqBody.title, image: reqBody.image } }
     );
     return NextResponse.json({
       message: "Post Updated Successfully",
-      data: res,
+      data: reqBody,
     });
   } catch (error) {
     return NextResponse.json({ message: "Post Can't be updated" });

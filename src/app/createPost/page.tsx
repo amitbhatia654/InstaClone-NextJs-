@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function page() {
   const { handleSubmit, register, reset } = useForm();
@@ -25,6 +26,7 @@ export default function page() {
       location: d.location,
     };
     const res = await axios.post("/api/users/posts", allData);
+    toast.success("Post Created Successfully");
     reset();
   };
 
@@ -73,6 +75,7 @@ export default function page() {
             Submit
           </button>
         </form>
+        <Toaster></Toaster>
       </div>
     </div>
   );
