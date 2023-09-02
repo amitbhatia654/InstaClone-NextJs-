@@ -71,7 +71,7 @@ export default function page() {
             className="my-2 mx-2"
           />
           <br></br>
-          <button type="submit" className=" btn btn-primary">
+          <button type="submit" className=" btn btn-warning ">
             Submit
           </button>
         </form>

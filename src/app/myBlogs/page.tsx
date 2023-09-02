@@ -100,7 +100,7 @@ export default function page() {
       ) : (
         <>
           <div className="">
-            <div className="container-fluid border border-primary  my-4 ">
+            <div className="container-fluid   my-4 ">
               <div className="row d-flex align-items-center justify-content-center ">
                 {allPosts.length > 0
                   ? allPosts.map((data) => {
@@ -109,9 +109,9 @@ export default function page() {
                           className="col-md-3 border  mx-1 my-3 p-2 "
                           key={data?._id}
                         >
-                          <div className="dropdown">
+                          <div className="dropdown  ">
                             <button
-                              className="btn btn-secondary "
+                              className="btn btn-secondary  "
                               type="button"
                               id="dropdownMenu2"
                               data-toggle="dropdown"

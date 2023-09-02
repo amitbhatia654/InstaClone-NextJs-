@@ -23,7 +23,10 @@ export async function PUT(request: NextRequest) {
       { name: reqBody.name, image: reqBody.image, aboutMe: reqBody.about }
     );
 
-    return NextResponse.json({ message: "Profile Updated Successfully" });
+    return NextResponse.json({
+      message: "Profile Updated Successfully",
+      reqBody,
+    });
   } catch (error) {
     return NextResponse.json({ message: "Data not updated" });
   }

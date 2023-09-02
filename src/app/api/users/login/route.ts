@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     //geenrating token
 
     const token = jwt.sign(tokenData, "amit bhai ji", {
-      expiresIn: "1d",
+      expiresIn: "10d",
     });
 
     const response = NextResponse.json({

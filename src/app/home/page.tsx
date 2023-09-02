@@ -25,7 +25,6 @@ export default function page() {
   return (
     <div className="simplebg">
       <Navbar></Navbar>
-      {/* {console.log(allPosts)} */}
       {loading ? (
         <Loading></Loading>
       ) : allPosts.length == 0 ? (
@@ -37,30 +36,29 @@ export default function page() {
               key={data._id}
               className=" my-4  d-flex align-items-center justify-content-center "
             >
-              <div className="p-1">
+              <div className="p-1 border">
                 <Image
-                  src={data?.userName.image || profilePic}
+                  src={data?.userName?.image || profilePic}
                   height={40}
                   width={40}
                   alt="pic"
                   className="rounded-circle"
                 ></Image>{" "}
-                <span>{data.userName.name}</span>
+                <span>{data?.userName?.name}</span>
                 <br></br>
                 <span className="fw-light">Location: {data.location}</span>
                 <br></br>
-                {data.image && (
+                {data?.image && (
                   <Image
                     src={data?.image}
                     height={300}
                     width={400}
                     alt="pic"
-                    className="border border-dark"
+                    className="border border-dark my-2"
                   ></Image>
                 )}
                 <br></br>
-                Caption: {data?.title}
-                <hr />
+                <div className="my-2"> Caption: {data?.title}</div>
               </div>
             </div>
           );

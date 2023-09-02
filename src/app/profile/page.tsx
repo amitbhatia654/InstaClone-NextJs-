@@ -62,6 +62,11 @@ export default function page() {
       image: postImage.myfile,
     };
     const res = await axios.put("/api/users/userDetails", userData);
+    setDetails({
+      ...details,
+      name: res.data.reqBody.name,
+      aboutMe: res.data.reqBody.about,
+    });
   };
 
   const changeProfilePic = async (event: any) => {
@@ -75,121 +80,128 @@ export default function page() {
     <div className="simplebg">
       <Navbar></Navbar>
       <br></br>
-      <h2>My Profile</h2>
-      {loading ? (
-        <Loading></Loading>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <td>
-                <Image
-                  src={postImage.myfile || profilepic}
-                  height={250}
-                  width={250}
-                  alt="profile Pic"
-                  priority
-                  className="profile-pic"
-                ></Image>
-              </td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>{details?.name}</td>
-            </tr>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col">
+            <h2>My Profile</h2>
+            {loading ? (
+              <Loading></Loading>
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <td>
+                      <Image
+                        src={postImage.myfile || profilepic}
+                        height={250}
+                        width={250}
+                        alt="profile Pic"
+                        priority
+                        className="profile-pic"
+                      ></Image>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>{details?.name}</td>
+                  </tr>
 
-            <tr>
-              <td>Email</td>
-              <td>{details?.email}</td>
-            </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{details?.email}</td>
+                  </tr>
 
-            <tr>
-              <td>About</td>
-              <td>{details?.aboutMe}</td>
-            </tr>
-          </thead>
-        </table>
-      )}
-      <br></br>
+                  <tr>
+                    <td>About</td>
+                    <td>{details?.aboutMe}</td>
+                  </tr>
+                </thead>
+              </table>
+            )}
+            <br></br>
 
-      {/* <!-- Button trigger modal --> */}
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-toggle="modal"
-        data-target="#staticBackdrop"
-        onClick={() => {
-          setValue("name", details.name), setValue("about", details.aboutMe);
-        }}
-      >
-        Update Profile
-      </button>
-      {/* <!-- Modal --> */}
-      <div
-        className="modal fade"
-        id="staticBackdrop"
-        data-backdrop="static"
-        data-keyboard="false"
-        tabIndex={-1}
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="staticBackdropLabel">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <form onSubmit={handleSubmit(handleUpdate)}>
-                <label htmlFor="profile-pic">
-                  <Image
-                    src={postImage.myfile || profilepic}
-                    height={250}
-                    width={250}
-                    alt="profile Pic"
-                    className="profile-pic"
-                  ></Image>
-                </label>
-                <br></br>
-                <input
-                  type="file"
-                  id="profile-pic"
-                  {...register("image")}
-                  accept=".jpeg,.png,.jpg"
-                  onChange={changeProfilePic}
-                />
-                Name: <input type="text" {...register("name")} />
-                <br></br>
-                About: <input type="text" {...register("about")} />
-                <br></br>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                cancel
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-dismiss="modal"
-                onClick={handleSubmit(handleUpdate)}
-              >
-                Update
-              </button>
+            {/* <!-- Button trigger modal --> */}
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-toggle="modal"
+              data-target="#staticBackdrop"
+              onClick={() => {
+                setValue("name", details.name),
+                  setValue("about", details.aboutMe);
+              }}
+            >
+              Update Profile
+            </button>
+            {/* <!-- Modal --> */}
+            <div
+              className="modal fade"
+              id="staticBackdrop"
+              data-backdrop="static"
+              data-keyboard="false"
+              tabIndex={-1}
+              aria-labelledby="staticBackdropLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="staticBackdropLabel">
+                      Modal title
+                    </h5>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div className="modal-body">
+                    <form onSubmit={handleSubmit(handleUpdate)}>
+                      <label htmlFor="profile-pic">
+                        <Image
+                          src={postImage.myfile || profilepic}
+                          height={250}
+                          width={250}
+                          alt="profile Pic"
+                          className="profile-pic"
+                        ></Image>
+                      </label>
+                      <br></br>
+                      <input
+                        type="file"
+                        id="profile-pic"
+                        {...register("image")}
+                        accept=".jpeg,.png,.jpg"
+                        onChange={changeProfilePic}
+                      />
+                      Name: <input type="text" {...register("name")} />
+                      <br></br>
+                      About: <input type="text" {...register("about")} />
+                      <br></br>
+                    </form>
+                  </div>
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      cancel
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      data-dismiss="modal"
+                      onClick={handleSubmit(handleUpdate)}
+                    >
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
