@@ -10,6 +10,7 @@ import Loading from "../Components/Loading";
 export default function page() {
   const [allPosts, setAllPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [liked, setLiked] = useState(false);
   useEffect(() => {
     getAllPost();
   }, []);
@@ -59,6 +60,17 @@ export default function page() {
                 )}
                 <br></br>
                 <div className="my-2"> Caption: {data?.title}</div>
+                <div className="">
+                  <button className="heartbtn" onClick={() => setLiked(!liked)}>
+                    <i
+                      className={
+                        liked
+                          ? ` fa-solid fa-heart fa-xl heartbtn1`
+                          : ` fa-regular fa-heart fa-xl heartbtn1`
+                      }
+                    ></i>
+                  </button>
+                </div>
               </div>
             </div>
           );

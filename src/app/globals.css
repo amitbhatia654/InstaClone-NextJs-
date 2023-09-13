@@ -70,3 +70,16 @@
   color: black;
   /* margin-left: 20px; */
 }
+
+.heartbtn {
+  border: none;
+}
+
+.heartbtn:focus {
+  outline: 0;
+}
+
+.heartbtn1 {
+  color: red;
+
+}
