@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Loading from "./Loading";
 
 export default function Login() {
   const route = useRouter();
@@ -22,43 +23,47 @@ export default function Login() {
   return (
     <div className="bgimg d-flex align-items-center">
       <div className="container d-flex align-items-center justify-content-center">
-        <div className="row login-signup-upper ">
-          <div>
-            <fieldset>
-              <form onSubmit={handleSubmit(loginDetails)}>
-                <legend>Login </legend>
-                Email
-                <input
-                  type="email"
-                  placeholder="Enter Your Email"
-                  {...register("email")}
-                  className="my-4 mx-5"
-                  required={true}
-                />
-                <br></br>
-                Password{" "}
-                <input
-                  type="password"
-                  placeholder="Enter Your Password"
-                  {...register("password")}
-                  required={true}
-                  className="mx-2"
-                />
-                <br></br>
-                <button
-                  disabled={loading ? true : false}
-                  type="submit"
-                  className="btn btn-primary my-3"
-                >
-                  Log In
-                </button>
-                <Link className="mx-3" href="/signup">
-                  Sign Up
-                </Link>
-              </form>
-            </fieldset>
+        {loading ? (
+          <Loading></Loading>
+        ) : (
+          <div className="row login-signup-upper ">
+            <div>
+              <fieldset>
+                <form onSubmit={handleSubmit(loginDetails)}>
+                  <legend>Login </legend>
+                  Email
+                  <input
+                    type="email"
+                    placeholder="Enter Your Email"
+                    {...register("email")}
+                    className="my-4 mx-5"
+                    required={true}
+                  />
+                  <br></br>
+                  Password{" "}
+                  <input
+                    type="password"
+                    placeholder="Enter Your Password"
+                    {...register("password")}
+                    required={true}
+                    className="mx-2"
+                  />
+                  <br></br>
+                  <button
+                    disabled={loading ? true : false}
+                    type="submit"
+                    className="btn btn-primary my-3"
+                  >
+                    Log In
+                  </button>
+                  <Link className="mx-3" href="/signup">
+                    Sign Up
+                  </Link>
+                </form>
+              </fieldset>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

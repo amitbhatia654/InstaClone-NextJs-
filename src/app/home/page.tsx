@@ -23,6 +23,11 @@ export default function page() {
     setLoading(false);
   };
 
+  const likedFunction = async (postid: any, userid: any) => {
+    const data = await axios.post("api/users/likes", { userid, postid });
+    //console.log(data, "The all data is ");
+  };
+
   return (
     <div className="simplebg">
       <Navbar></Navbar>
@@ -61,7 +66,13 @@ export default function page() {
                 <br></br>
                 <div className="my-2"> Caption: {data?.title}</div>
                 <div className="">
-                  <button className="heartbtn" onClick={() => setLiked(!liked)}>
+                  <button
+                    className="heartbtn"
+                    onClick={() => {
+                      likedFunction(data._id, data.userId);
+                      setLiked(!liked);
+                    }}
+                  >
                     <i
                       className={
                         liked

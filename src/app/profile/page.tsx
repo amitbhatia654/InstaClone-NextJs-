@@ -7,8 +7,6 @@ import Navbar from "../Components/Navbar";
 import Image from "next/image";
 import profilepic from "./profilepic.jpg";
 import { useForm } from "react-hook-form";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../Components/Loading";
 
 export default function page() {
@@ -17,7 +15,6 @@ export default function page() {
   }, []);
 
   const { register, handleSubmit, setValue } = useForm();
-  const element = <FontAwesomeIcon icon={faEnvelope} />;
   const [postImage, setPostImage] = useState({ myfile: "" });
   const [loading, setLoading] = useState(true);
   const [imageData, setImageData] = useState("");

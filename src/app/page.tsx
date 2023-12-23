@@ -2,10 +2,8 @@ import Login from "./Components/Login";
 
 export default function Home() {
   return (
-    <main >
-      
+    <main>
       <Login></Login>
-      
     </main>
-  )
+  );
 }
