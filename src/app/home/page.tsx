@@ -24,8 +24,9 @@ export default function page() {
   };
 
   const likedFunction = async (postid: any, userid: any) => {
-    const data = await axios.post("api/users/likes", { userid, postid });
-    //console.log(data, "The all data is ");
+    const data1 = await axios.get("/api/users/userDetails");
+    const userId = data1.data.UserDetails._id;
+    const data = await axios.post("api/users/likes", { userId, postid });
   };
 
   return (
@@ -75,7 +76,7 @@ export default function page() {
                   >
                     <i
                       className={
-                        liked
+                        data.likes.includes(data.userId)
                           ? ` fa-solid fa-heart fa-xl heartbtn1`
                           : ` fa-regular fa-heart fa-xl heartbtn1`
                       }

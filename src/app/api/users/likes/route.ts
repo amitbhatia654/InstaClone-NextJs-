@@ -1,5 +1,8 @@
 import connect from "@/dbConfig/dbConfig";
 import posts from "@/models/allPost";
+const mongoose = require("mongoose");
+
+import axios from "axios";
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -8,22 +11,16 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    //console.log(reqBody.userid, "this is userid ");
-    //console.log(reqBody.postid, "this is postid ");
 
-    // const res = await new posts({
-    //   likes: [reqBody.data],
-    // }).save();
+    // console.log(reqBody, "the id");
 
     const res = await posts.findOneAndUpdate(
       { _id: reqBody.postid },
-
-      { likes: [reqBody.userid], location: "Hongkong" },
-
-      { new: true, upsert: true }
+      { $push: { likes: reqBody.userId } }
+      // { new: true, upsert: true }
     );
+    // console.log(res, "the user is 11 ");
 
-    console.log(res, "the response is");
     return NextResponse.json({ message: "Post Likedd SuccessFully" });
   } catch (error) {
     console.log(error);
