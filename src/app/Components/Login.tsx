@@ -26,7 +26,8 @@ export default function Login() {
         {loading ? (
           <Loading></Loading>
         ) : (
-          <div className="row login-signup-upper ">
+          <div className="row login-signup-upper rounded">
+            <h2 className="text-center"> Welcome to InstaClick</h2>
             <div>
               <fieldset>
                 <form onSubmit={handleSubmit(loginDetails)}>
@@ -36,17 +37,17 @@ export default function Login() {
                     type="email"
                     placeholder="Enter Your Email"
                     {...register("email")}
-                    className="my-4 mx-5"
+                    className=" mx-3"
                     required={true}
                   />
                   <br></br>
-                  Password{" "}
+                  Password
                   <input
                     type="password"
                     placeholder="Enter Your Password"
                     {...register("password")}
                     required={true}
-                    className="mx-2"
+                    className="mx-3"
                   />
                   <br></br>
                   <button

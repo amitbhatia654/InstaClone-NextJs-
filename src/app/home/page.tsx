@@ -6,6 +6,7 @@ import axios from "axios";
 import Image from "next/image";
 import profilePic from "../profile/profilepic.jpg";
 import Loading from "../Components/Loading";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function page() {
   const [allPosts, setAllPosts] = useState<any[]>([]);
@@ -29,6 +30,10 @@ export default function page() {
     const data = await axios.post("api/users/likes", { userId, postid });
   };
 
+  const pathname = usePathname();
+  // const searchname = useSearchParams();
+  // console.log(pathname, "the name isaaa ");
+
   return (
     <div className="simplebg">
       <Navbar></Navbar>
@@ -41,7 +46,7 @@ export default function page() {
           return (
             <div
               key={data._id}
-              className=" my-4  d-flex align-items-center justify-content-center "
+              className=" my-4 d-flex align-items-center justify-content-center "
             >
               <div className="p-1 border">
                 <Image
@@ -58,10 +63,10 @@ export default function page() {
                 {data?.image && (
                   <Image
                     src={data?.image}
-                    height={300}
-                    width={400}
+                    height={350}
+                    width={500}
                     alt="pic"
-                    className="border border-dark my-2"
+                    className="border border-dark my-2 img-fluid"
                   ></Image>
                 )}
                 <br></br>

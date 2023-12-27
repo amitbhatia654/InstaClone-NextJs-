@@ -48,11 +48,12 @@
 }
 
 .bgimg {
-  background-image: url("../../Images/bgimg.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-image: url("../../Images/bgimg.jpeg"); */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
   height: 700px;
   border: 1px solid navy;
+  background-color: #84ccd7;
 }
 
 .create-form {

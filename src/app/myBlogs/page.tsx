@@ -59,14 +59,12 @@ export default function page() {
     };
 
     const res = await axios.put("/api/users/posts", newData);
-    //console.log(res.data.data, "The final res is ");
     if (res?.data?.data?.id) {
       setAllPosts((old) =>
         old.map((post) => {
           if (post._id === res.data.data.id)
             post = {
               ...post,
-              //image: res.data.data.image,
               title: res.data.data.title,
             };
           return post;
@@ -109,47 +107,48 @@ export default function page() {
                           className="col-md-3 border  mx-1 my-3 p-2 "
                           key={data?._id}
                         >
-                          <div className="dropdown  ">
-                            <button
-                              className="btn btn-secondary  "
-                              type="button"
-                              id="dropdownMenu2"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
+                          <div className="dropdown">
+                            <a
+                              className="btn btn-secondary dropdown-toggle"
+                              href="#"
+                              role="button"
+                              id="dropdownMenuLink"
+                              data-bs-toggle="dropdown"
                               aria-expanded="false"
-                            >
-                              <i className="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
-                            <div
+                            ></a>
+
+                            <ul
                               className="dropdown-menu"
-                              aria-labelledby="dropdownMenu2"
+                              aria-labelledby="dropdownMenuLink"
                             >
-                              <button
-                                className="btn dropdown-item"
-                                onClick={() => handleUpdate(data)}
-                                data-toggle="modal"
-                                data-target="#staticBackdrop"
-                              >
-                                Update{" "}
-                                <i className="fa-solid fa-pen-to-square"></i>
-                              </button>
-                              <hr />
-                              <button
-                                className="btn dropdown-item "
-                                onClick={() => handleDelete(data._id)}
-                              >
-                                Delete <i className="fa-solid fa-trash"></i>
-                              </button>
-                            </div>
+                              <li>
+                                <button
+                                  className="btn btn-danger mx-2 my-1"
+                                  onClick={() => handleUpdate(data)}
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                >
+                                  Edit{" "}
+                                </button>
+                              </li>
+                              <li>
+                                <button
+                                  className="btn btn-warning mx-2 my-1"
+                                  onClick={() => handleDelete(data._id)}
+                                >
+                                  Delete{" "}
+                                </button>
+                              </li>
+                            </ul>
                           </div>
                           <br></br>
                           {data?.image && (
                             <Image
                               src={data?.image}
                               height={300}
-                              width={320}
+                              width={340}
                               alt="pic"
-                              className=" img-responsive "
+                              className=" img-fluid "
                             ></Image>
                           )}
                           Captions -{data?.title}
@@ -160,29 +159,27 @@ export default function page() {
               </div>
             </div>
           </div>
+
+          {/* <!-- Modal --> */}
           <div
             className="modal fade"
-            id="staticBackdrop"
-            data-backdrop="static"
-            data-keyboard="false"
+            id="exampleModal"
             tabIndex={-1}
-            aria-labelledby="staticBackdropLabel"
+            aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title" id="staticBackdropLabel">
+                  <h5 className="modal-title" id="exampleModalLabel">
                     Update
                   </h5>
                   <button
                     type="button"
-                    className="close"
-                    data-dismiss="modal"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
                     aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                  ></button>
                 </div>
                 <div className="modal-body">
                   <form>
@@ -206,22 +203,23 @@ export default function page() {
                   <button
                     type="button"
                     className="btn btn-secondary"
-                    data-dismiss="modal"
+                    data-bs-dismiss="modal"
                   >
-                    cancel
+                    Close
                   </button>
                   <button
                     type="button"
                     className="btn btn-primary"
-                    data-dismiss="modal"
                     onClick={handleSubmit(saveUpdatedDetails)}
+                    data-bs-dismiss="modal"
                   >
-                    Update
+                    Save changes
                   </button>
                 </div>
               </div>
             </div>
           </div>
+
           <Toaster />
         </>
       )}

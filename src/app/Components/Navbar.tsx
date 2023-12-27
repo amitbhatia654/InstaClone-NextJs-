@@ -21,76 +21,51 @@ export default function Navbar() {
   };
   return (
     <div className="sticky-top">
-      <div className=" container-fluid bg-info  font-weight-bold ">
-        <div className="row mx-2 ">
-          <div className="col-md-9 text-white my-3">
-            <i className="fa-solid fa-explosion fa-2xl mx-2"></i>
+      
+      
+<nav className="navbar navbar-expand-lg navbar-light bg-info ">
+  <div className="container-fluid my-4">
+    <Link className="navbar-brand" href="/home">
+      <i className="fa-solid fa-explosion fa-2xl mx-2"></i>
             InstaClick
-          </div>
-          <div className="col-md-3 text-black my-2">
-            welcome {userName}
+    </Link>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item">
+          <Link className="nav-item nav-link mx-4 " href="/home">
+              <i className="fa-solid fa-house"></i> Home{" "}
+            </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-item nav-link mx-4" href="/myBlogs">
+              <i className="fa-solid fa-blog"></i> My Blogs
+            </Link>
+        </li>
+        <li className="nav-item dropdown">
+          <Link className="nav-item nav-link mx-4" href="/createPost">
+              <i className="fa-solid fa-circle-plus"></i> Create
+            </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-item nav-link mx-4" href="/profile">
+              <i className="fa-solid fa-user"></i> Profile
+            </Link>
+        </li>
+      </ul>
+      welcome {userName}
             <button className="btn btn-danger mx-3" onClick={loggingOut}>
               <i className="fa-solid fa-right-from-bracket"></i> Logout
             </button>
-          </div>
-        </div>
-      </div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-info ">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse " id="navbarNavAltMarkup ">
-          <div className="navbar-nav ">
-            <Link className="nav-item nav-link mx-4 " href="/home">
-              <i className="fa-solid fa-house"></i> Home{" "}
-            </Link>
-            <Link className="nav-item nav-link mx-4" href="/myBlogs">
-              <i className="fa-solid fa-blog"></i> My Blogs
-            </Link>
-            <Link className="nav-item nav-link mx-4" href="/createPost">
-              <i className="fa-solid fa-circle-plus"></i> Create
-            </Link>
-            <Link className="nav-item nav-link mx-4" href="/profile">
-              <i className="fa-solid fa-user"></i> Profile
-            </Link>
-          </div>
-        </div>
-      </nav>
-      {/* <span className="sideNav d-inline-block">
-        <ul>
-          <li className="border border primary d-inline-block">
-            <Link className="nav-item nav-link mx-2 " href="/home">
-              <i className="fa-solid fa-house"></i> Home{" "}
-            </Link>
-          </li>
-          <br></br>
-          <li className="d-inline-block">
-            <Link className="nav-item nav-link mx-2 " href="/myBlogs">
-              <i className="fa-solid fa-blog"></i> My Blogs
-            </Link>
-          </li>
-          <br />
-          <li className="d-inline-block">
-            <Link className="nav-item nav-link mx-2" href="/createPost">
-              <i className="fa-solid fa-circle-plus"></i> Create
-            </Link>
-          </li>
-          <br />
-          <li className="d-inline-block">
-            <Link className="nav-item nav-link mx-2" href="/profile">
-              <i className="fa-solid fa-user"></i> Profile
-            </Link>
-          </li>
-        </ul>
-      </span> */}
+    </div>
+  </div>
+</nav>
+
+
+
+
     </div>
   );
 }
