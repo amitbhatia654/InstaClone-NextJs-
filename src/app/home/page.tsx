@@ -31,8 +31,6 @@ export default function page() {
   };
 
   const pathname = usePathname();
-  // const searchname = useSearchParams();
-  // console.log(pathname, "the name isaaa ");
 
   return (
     <div className="simplebg">
@@ -71,7 +69,7 @@ export default function page() {
                 )}
                 <br></br>
                 <div className="my-2"> Caption: {data?.title}</div>
-                <div className="">
+                {/* <div className="">
                   <button
                     className="heartbtn"
                     onClick={() => {
@@ -87,7 +85,7 @@ export default function page() {
                       }
                     ></i>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           );

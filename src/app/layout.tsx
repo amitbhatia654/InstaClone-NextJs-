@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-//import 'bootstrap/dist/css/bootstrap.css'
-//import Head from 'next/head'
+import { ApplicationProvider } from "./Components/ContextFiles/MyContextData";
 
 import { Inter } from "next/font/google";
 
@@ -39,8 +38,9 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
+
       <body className={inter.className} suppressHydrationWarning={true}>
-        {children}
+        <ApplicationProvider>{children}</ApplicationProvider>
       </body>
     </html>
   );

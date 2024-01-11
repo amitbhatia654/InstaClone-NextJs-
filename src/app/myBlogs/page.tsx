@@ -93,8 +93,11 @@ export default function page() {
   return (
     <div>
       <Navbar></Navbar>
+      <h3>My Blogs</h3>
       {loading ? (
-        <Loading></Loading>
+        <>
+          <Loading></Loading>
+        </>
       ) : (
         <>
           <div className="">
@@ -155,7 +158,7 @@ export default function page() {
                         </div>
                       );
                     })
-                  : "sorry there is no post! "}
+                  : " No Blogs Available !"}
               </div>
             </div>
           </div>

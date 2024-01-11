@@ -43,15 +43,6 @@ export default function page() {
   };
 
   const handleUpdate = async (data: any) => {
-    //console.log(data.image[0], "in update func");
-    // var imageData;
-
-    // if (data.image[0]) {
-    //   imageData = await convertToBase64(data?.image[0]);
-    //   const a: unknown = imageData;
-    //   const b: string = a as string;
-    //   setPostImage({ ...postImage, myfile: b });
-    // }
     const userData = {
       id: details._id,
       name: data.name,

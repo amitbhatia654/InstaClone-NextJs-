@@ -66,10 +66,8 @@
 }
 
 .sideNav {
-  /* background-color: blue; */
   border: 1px solid black;
   color: black;
-  /* margin-left: 20px; */
 }
 
 .heartbtn {
@@ -80,7 +78,16 @@
   outline: 0;
 }
 
+.name {
+  color: black;
+  font-size: 21px;
+  font-weight: bold;
+}
+
 .heartbtn1 {
   color: red;
+}
 
+.mynav {
+  background-color: #d4e670;
 }
