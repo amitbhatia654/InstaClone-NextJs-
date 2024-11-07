@@ -93,7 +93,7 @@ export default function page() {
   return (
     <div>
       <Navbar></Navbar>
-      <h3>My Blogs</h3>
+      <h2 className="text-center mt-2">My Blogs</h2>
       {loading ? (
         <>
           <Loading></Loading>

@@ -44,7 +44,7 @@ export default function page() {
       <div className="d-flex align-items-center justify-content-center py-5 ">
         <form
           onSubmit={handleSubmit(createPost)}
-          className="border  border-primary py-5 create-form"
+          className="  border-primary py-5 create-form"
         >
           Title:
           <input
@@ -71,7 +71,7 @@ export default function page() {
             className="my-2 mx-2"
           />
           <br></br>
-          <button type="submit" className=" btn btn-warning ">
+          <button type="submit" className=" btn btn-primary ">
             Submit
           </button>
         </form>
