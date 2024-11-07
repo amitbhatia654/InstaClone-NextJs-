@@ -61,8 +61,14 @@ export default function page() {
                 {data?.image && (
                   <Image
                     src={data?.image}
-                    height={350}
-                    width={500}
+                    height={300}
+                    width={300}
+                    style={{
+                      maxHeight: "400px",
+                      minHeight: "400px",
+                      minWidth: "400px",
+                      maxWidth: "400px",
+                    }}
                     alt="pic"
                     className="border border-dark my-2 img-fluid"
                   ></Image>
